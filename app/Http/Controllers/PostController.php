@@ -12,10 +12,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::get();
-        return view('post.index', compact('posts'));
+        $posts = Post::where('judul', 'LIKE', "%$request->q%")
+            ->orWhere('pesan', 'LIKE', "%$request->q%")
+            ->paginate(3);
+        $q = $request->q;
+        return view('post.index', compact('posts', 'q'));
     }
 
     /**

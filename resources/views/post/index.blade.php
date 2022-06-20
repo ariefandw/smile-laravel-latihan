@@ -9,8 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <a href="{{ route('post.create') }}">tambah</a>
-                    <table>
+                    <form method="get" action="{{ route('post.index') }}">
+                        <input type="text" name="q" value="{{ $q }}"><button type="submit">Cari</button>
+                    </form>
+                    <br></br>
+
+                    <a class="btn btn-success" href="{{ route('post.create') }}">tambah</a>
+                    <table class="table table-sm">
                         <tr>
                             <th>ID</th>
                             <th>Judul</th>
@@ -34,6 +39,7 @@
                         </tr>
                         @endforeach
                     </table>
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>
