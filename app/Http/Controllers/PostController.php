@@ -41,7 +41,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        (new Post())->fill($request->all())->save();
+        $request->validate([
+            'judul' => 'required|max:25',
+            'pesan' => 'required|min:10',
+        ]);
+        $post = new Post();
+        $post->fill($request->all());
+        $post->user_id = auth()->user()->id;
+        $post->save();
         return redirect(route('post.index'));
     }
 

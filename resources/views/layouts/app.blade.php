@@ -42,6 +42,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('post.index') }}">{{ __('Post') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('comment.index') }}">{{ __('Comment') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.index') }}">{{ __('User') }}</a>
+                            </li>
                         @endguest
                     </ul>
 
@@ -85,6 +91,19 @@
         </nav>
 
         <main class="py-4">
+            @if ($errors->any())            
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>

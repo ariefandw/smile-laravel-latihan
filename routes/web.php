@@ -24,6 +24,8 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function () {
     Route::resources([
         'post' => \App\Http\Controllers\PostController::class,
+        'user' => \App\Http\Controllers\UserController::class,
+        'comment' => \App\Http\Controllers\CommentController::class,
     ]);
 });
 
