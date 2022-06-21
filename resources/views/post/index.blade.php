@@ -21,6 +21,7 @@
                             <th>ID</th>
                             <th>Judul</th>
                             <th>Pesan</th>
+                            <th>Kategori</th>
                             <th>User</th>
                             <th>Aksi</th>
                         </tr>
@@ -29,6 +30,7 @@
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->judul }}</td>
                             <td>{{ $post->pesan }}</td>
+                            <td>{{ $post->category->nama_kategori }}</td>
                             <td>{{ $post->user->name }}</td>
                             <td>
                                 <form method="post" action="{{ route('post.destroy', $post->id) }}" onsubmit="return confirm('Apakah anda yakin?');">
