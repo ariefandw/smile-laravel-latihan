@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -30,7 +31,8 @@ class PostController extends Controller
     {
         $action = 'create';
         $post = new Post();
-        return view('post.form', compact('post', 'action'));
+        $categories = Category::get();
+        return view('post.form', compact('post', 'action', 'categories'));
     }
 
     /**
@@ -72,7 +74,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $action = 'edit';
-        return view('post.form', compact('post', 'action'));
+        $categories = Category::get();
+        return view('post.form', compact('post', 'action', 'categories'));
     }
 
     /**

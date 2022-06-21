@@ -16,6 +16,20 @@
                             <input type="text" name="judul" class="form-control" value="{{ $post->judul }}">
                         </div>
                         <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Kategori</label>
+                            <select class="form-control" name="category_id">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $category->id == $post->category_id ? 'selected' : '' }}>
+                                        {{ $category->nama_kategori }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <textarea name="pesan" class="form-control">{{ $post->pesan }}</textarea>
+                        </div>
+                        <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <textarea name="pesan" class="form-control">{{ $post->pesan }}</textarea>
                         </div>
