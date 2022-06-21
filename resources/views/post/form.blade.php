@@ -11,11 +11,15 @@
                     <form method="post" action="{{ $action == 'edit' ? route('post.update', $post->id) : route('post.store') }}">
                         @csrf
                         @if($action == 'edit') @method('PUT') @endif
-                        Judul<br>
-                        <input type="text" name="judul" value="{{ $post->judul }}"><br>
-                        Pesan<br>
-                        <textarea name="pesan">{{ $post->pesan }}</textarea><br>
-                        <button type="submit">Simpan</button>
+                        <div class="mb-3">
+                            <label class="form-label">Judul</label>
+                            <input type="text" name="judul" class="form-control" value="{{ $post->judul }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <textarea name="pesan" class="form-control">{{ $post->pesan }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
             </div>

@@ -8,9 +8,17 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    Judul: {{ $post->judul }}<br>
-                    Pesan: {{ $post->pesan }}<br>
-                    <a href="{{ route('post.index') }}">back</a>
+                    <form>
+                        <div class="row mb-2">
+                            <label class="col-sm-2">Judul</label>
+                            <div class="col-sm-10">{{ $post->judul }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="col-sm-2">Pesan</label>
+                            <div class="col-sm-10">{{ $post->pesan }}</div>
+                        </div>
+                    </form>
+                    <a class="btn btn-primary" href="{{ route('post.index') }}">Back</a>
                 </div>
             </div>
         </div>
