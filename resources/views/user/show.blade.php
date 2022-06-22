@@ -18,6 +18,11 @@
                             <div class="col-sm-10">{{ $user->email }}</div>
                         </div>
                         <div class="row mb-2">
+                            <label class="col-sm-2">Foto</label>
+                            <img src="{{ asset(Storage::url($user->foto)) }}" style="width:200px;"></div>
+                            <a href="{{ route('user.download', $user->id) }}">download</a>
+                        </div>
+                        <div class="row mb-2">
                             <label class="col-sm-2">Posts:</label>
                             <div class="col-sm-10">
                                 <table class="table table-sm">

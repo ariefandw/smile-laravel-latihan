@@ -8,7 +8,10 @@
                 <div class="card-header">{{ __('User') }}</div>
 
                 <div class="card-body">
-                    <form method="post" action="{{ $action == 'edit' ? route('user.update', $user->id) : route('user.store') }}">
+                    <form 
+                        method="post" 
+                        action="{{ $action == 'edit' ? route('user.update', $user->id) : route('user.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         @if($action == 'edit') @method('PUT') @endif
                         <div class="mb-3">
@@ -17,11 +20,22 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <textarea name="email" class="form-control">{{ $user->email }}</textarea>
+                            <input type="email" name="email" class="form-control" value="{{ $user->email }}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>
                             <input type="password" name="password" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Role</label>
+                            <select name="role" class="form-control">
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Foto</label>
+                            <input type="file" class="form-control" name="file_foto">
                         </div>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>

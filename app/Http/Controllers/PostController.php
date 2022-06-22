@@ -105,4 +105,8 @@ class PostController extends Controller
         $post->delete();
         return back();
     }
+
+    public function print(){
+        return 'Halaman Print';
+    }
 }

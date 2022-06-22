@@ -38,8 +38,10 @@
                                     @method('DELETE')
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a class="btn btn-info" href="{{ route('post.show', $post->id) }}"><i class="fa-solid fa-eye"></i></a> 
+                                        @if(auth()->user()->role == 'admin')    
                                         <a class="btn btn-warning" href="{{ route('post.edit', $post->id) }}"><i class="fa-solid fa-pencil"></i></a> 
                                         <button class="btn btn-danger" type="submit"><i class="fa-solid fa-times"></i></button>
+                                        @endif
                                     </div>
                                 </form>
                             </td>

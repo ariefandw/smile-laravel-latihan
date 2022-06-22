@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -42,7 +43,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->merge(['password' => Hash::make($request->password)]);
+        $path = $request->file('file_foto')->store('public/foto');
+        $request->merge([
+            'password' => Hash::make($request->password),
+            'foto' => $path,
+        ]);
         (new User())->fill($request->all())->save();
         return redirect(route('user.index'));
     }
@@ -99,5 +104,11 @@ class UserController extends Controller
     {
         $user->delete();
         return back();
+    }
+
+    public function download($id)
+    {
+        $user = User::findOrFail($id);
+        return Storage::download($user->foto);
     }
 }

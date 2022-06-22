@@ -17,11 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/download/{id}', [App\Http\Controllers\UserController::class, 'download'])->name('user.download');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resources([
         'post' => \App\Http\Controllers\PostController::class,
         'user' => \App\Http\Controllers\UserController::class,
@@ -29,6 +33,11 @@ Route::middleware(['auth'])->group(function () {
     ]);
 });
 
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::resource('post', \App\Http\Controllers\PostController::class)->only([
+        'index', 'show'
+    ]);
+});
 require __DIR__.'/auth.php';
 
 Auth::routes();
