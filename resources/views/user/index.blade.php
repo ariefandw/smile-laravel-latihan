@@ -29,7 +29,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <form method="user" action="{{ route('user.destroy', $user->id) }}" onsubmit="return confirm('Apakah anda yakin?');">
+                                <form method="post" action="{{ route('user.destroy', $user->id) }}" onsubmit="return confirm('Apakah anda yakin?');">
                                     @csrf
                                     @method('DELETE')
                                     <div class="btn-group btn-group-sm" role="group">

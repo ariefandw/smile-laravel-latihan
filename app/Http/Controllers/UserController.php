@@ -102,6 +102,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Storage::delete($user->foto);
         $user->delete();
         return back();
     }
