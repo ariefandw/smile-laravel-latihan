@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/token', function () {
+    return csrf_token();
+});
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
